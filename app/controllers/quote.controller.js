@@ -3,30 +3,30 @@ const Quote = require('../models/quote.model.js');
 // Create and Save a new quote
 exports.create = (req, res) => {
     // Validate request
-    if(!req.body.Quote) {
+    if(!req.body.quote) {
         return res.status(400).send({
             message: "'quote' cannot be empty!"
         })
-    }else if(!req.body.Author) {
+    }else if(!req.body.author) {
         return res.status(400).send({
             message: "'author' cannot be empty!"
         })
-    }else if(req.body.Tags.length < 1) {
+    }else if(req.body.tags.length < 1) {
         return res.status(400).send({
             message: "You need at least one tag in the 'tag' array!"
         })
-    }else if(!req.body.Category) {
+    }else if(!req.body.category) {
         return res.status(400).send({
             message: "'category' cannot be empty!"
         })
     };
     // Create a Quote
     const quote = new Quote({
-        quote: req.body.Quote,
-        author: req.body.Author,
-        tags: req.body.Tags,
-        popularity: req.body.Popularity || 0,
-        category: req.body.Category
+        quote: req.body.quote,
+        author: req.body.author,
+        tags: req.body.tags,
+        popularity: req.body.popularity || 0,
+        category: req.body.category
     });
 
     // Save quote in database
@@ -126,7 +126,7 @@ exports.update = (req, res) => {
 // Delete a quote with the specified quoteId in the request
 exports.delete = (req, res) => {
     Quote.findByIdAndRemove(req.params.quoteId)
-    then(quote => {
+    .then(quote => {
         if(!quote) {
             return res.status(404).send({
                 message: "Quote not found with id " + req.params.quoteId
