@@ -10,4 +10,11 @@ const QuoteSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Quote', QuoteSchema);
+const UserSchema = mongoose.Schema({
+    username: String,
+    password: String
+}, {
+    timestamps:true
+});
+
+module.exports = mongoose.model('Quote', QuoteSchema), mongoose.model("User", UserSchema);
