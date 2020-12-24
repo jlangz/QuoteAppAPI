@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/quoteApp'
+    url: 'mongodb+srv://langz-admin:BrownLife1337!@cluster1.ismla.mongodb.net/test'
 }

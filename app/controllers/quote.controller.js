@@ -12,13 +12,13 @@ exports.create = (req, res) => {
             message: "'author' cannot be empty!"
         })
     }else if(req.body.tags.length < 1) {
+        console.log("Quote: '" + req.body.quote + "' has no tags.")
         return res.status(400).send({
             message: "You need at least one tag in the 'tag' array!"
         })
     }else if(!req.body.category) {
-        return res.status(400).send({
-            message: "'category' cannot be empty!"
-        })
+        console.log("No category found: Used tag '" + req.body.tags[0] + "' instead.");
+        req.body.category = req.body.tags[0];
     };
     // Create a Quote
     const quote = new Quote({
